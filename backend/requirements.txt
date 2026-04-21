@@ -1,0 +1,18 @@
+fastapi==0.110.0
+uvicorn[standard]==0.27.1
+
+# AI / Diffusion
+torch>=2.1.0
+torchvision>=0.16.0
+diffusers>=0.27.0
+transformers>=4.39.0
+accelerate>=0.28.0
+
+# 이미지 처리
+pillow>=10.0.0
+
+# 환경 변수
+python-dotenv>=1.0.0
+
+# 기타
+numpy>=1.24.0
