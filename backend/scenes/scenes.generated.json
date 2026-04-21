@@ -1,0 +1,230 @@
+{
+  "start": {
+    "title": "작은 방",
+    "description": "주인공은 작은 방에서 깨어난다. 자신이 누구인지 기억나지 않는다. 주변은 낯설고 공기는 차갑다. 당신은 이곳에서 숲 깊은 곳에서 자신의 기억과 진실을 찾는다. 규칙: 녹슨 열쇠를 찾으면 탑의 문을 열 수 있고, 문을 열면 엔딩으로 진행된다.",
+    "prompt_template": "dark fantasy 기억 상실과 진실 왜곡 story scene, 작은 방, the protagonist wakes up in a mysterious place, cinematic atmosphere, state: {state}",
+    "state_texts": [
+      {
+        "condition": {
+          "has_item": "편지"
+        },
+        "text": "손에는 이미 편지가 쥐어져 있다."
+      }
+    ],
+    "choices": [
+      {
+        "id": "inspect_room",
+        "text": "작은 방을 조사한다",
+        "next_scene": "first_clue",
+        "effects": {}
+      },
+      {
+        "id": "move_forward",
+        "text": "숲 입구으로 향한다",
+        "next_scene": "crossroad",
+        "effects": {}
+      }
+    ]
+  },
+  "first_clue": {
+    "title": "편지의 발견",
+    "description": "희미한 빛 아래에서 편지를 발견했다. 내용은 불완전하지만 분명히 당신을 깊은 숲으로 이끌고 있다.",
+    "prompt_template": "dark fantasy mystery item scene, discovering 편지, dark room, symbolic story illustration, state: {state}",
+    "state_texts": [
+      {
+        "condition": {
+          "has_item": "편지"
+        },
+        "text": "편지의 문장은 읽을수록 불길하다."
+      }
+    ],
+    "choices": [
+      {
+        "id": "take_first_item",
+        "text": "편지를 챙긴다",
+        "next_scene": "crossroad",
+        "effects": {
+          "add_item": "편지"
+        },
+        "condition_not": {
+          "has_item": "편지"
+        }
+      },
+      {
+        "id": "leave_without_item",
+        "text": "아무것도 챙기지 않고 나간다",
+        "next_scene": "crossroad",
+        "effects": {}
+      }
+    ]
+  },
+  "crossroad": {
+    "title": "숲 입구",
+    "description": "숲 입구에 도착했다. 당신은 숲의 안내자의 흔적을 발견하고, 멀리 깊은 숲으로 이어지는 길을 본다.",
+    "prompt_template": "dark fantasy crossroads scene, 숲 입구, mist, faint traces of 숲의 안내자, branching path, state: {state}",
+    "state_texts": [
+      {
+        "condition": {
+          "has_item": "편지"
+        },
+        "text": "편지의 문구와 풍경이 묘하게 겹쳐 보인다."
+      }
+    ],
+    "choices": [
+      {
+        "id": "follow_guide",
+        "text": "숲의 안내자의 흔적을 따라간다",
+        "next_scene": "deep_truth",
+        "effects": {
+          "trust_guide": 1
+        }
+      },
+      {
+        "id": "search_second_item",
+        "text": "녹슨 열쇠를 찾는다",
+        "next_scene": "tower_gate",
+        "effects": {
+          "add_item": "녹슨_열쇠"
+        },
+        "condition_not": {
+          "has_item": "녹슨_열쇠"
+        }
+      },
+      {
+        "id": "go_tower_without_item",
+        "text": "폐허의 탑으로 향한다",
+        "next_scene": "tower_gate",
+        "effects": {}
+      }
+    ]
+  },
+  "tower_gate": {
+    "title": "폐허의 탑의 입구",
+    "description": "폐허의 탑 앞에 섰다. 잠긴 문과 오래된 문양이 이곳에 중요한 비밀이 있음을 말해준다.",
+    "prompt_template": "dark fantasy ruined tower entrance, locked gate, old symbols, ominous atmosphere, state: {state}",
+    "state_texts": [
+      {
+        "condition": {
+          "has_item": "녹슨_열쇠"
+        },
+        "text": "당신이 가진 녹슨 열쇠가 문양과 공명한다."
+      }
+    ],
+    "choices": [
+      {
+        "id": "open_gate",
+        "text": "녹슨 열쇠를 사용해 문을 연다",
+        "next_scene": "ending_truth",
+        "effects": {
+          "remove_item": "녹슨_열쇠"
+        },
+        "condition": {
+          "has_item": "녹슨_열쇠"
+        }
+      },
+      {
+        "id": "search_third_item",
+        "text": "주변에서 부서진 펜던트를 찾는다",
+        "next_scene": "tower_gate",
+        "effects": {
+          "add_item": "부서진_펜던트"
+        },
+        "condition_not": {
+          "has_item": "부서진_펜던트"
+        }
+      },
+      {
+        "id": "return_forest",
+        "text": "깊은 숲으로 돌아간다",
+        "next_scene": "deep_truth",
+        "effects": {}
+      }
+    ]
+  },
+  "deep_truth": {
+    "title": "깊은 숲",
+    "description": "깊은 숲에는 이름 없는 그림자의 기척이 남아 있다. 당신의 기억과 관련된 진실이 가까워지고 있다.",
+    "prompt_template": "dark fantasy deep forest revelation scene, 깊은 숲, presence of 이름 없는 그림자, surreal and emotional, state: {state}",
+    "state_texts": [],
+    "choices": [
+      {
+        "id": "accept_truth",
+        "text": "기억 회복의 길을 받아들인다",
+        "next_scene": "ending_truth",
+        "effects": {
+          "ending_path": "truth"
+        }
+      },
+      {
+        "id": "deny_truth",
+        "text": "거짓된 평화의 길을 택한다",
+        "next_scene": "ending_peace",
+        "effects": {
+          "ending_path": "peace"
+        }
+      },
+      {
+        "id": "succumb_forest",
+        "text": "숲에 잠식됨에 몸을 맡긴다",
+        "next_scene": "ending_forest",
+        "effects": {
+          "ending_path": "forest"
+        }
+      }
+    ]
+  },
+  "ending_truth": {
+    "title": "기억 회복",
+    "description": "당신은 마침내 기억의 일부를 되찾고, 안개의 숲의 진실을 깨닫는다.",
+    "prompt_template": "dark fantasy ending scene, revelation, emotional climax, state: {state}",
+    "state_texts": [],
+    "choices": [
+      {
+        "id": "restart_after_truth",
+        "text": "처음으로 돌아간다",
+        "next_scene": "start",
+        "effects": {
+          "inventory": [],
+          "trust_guide": 0,
+          "ending_path": ""
+        }
+      }
+    ]
+  },
+  "ending_peace": {
+    "title": "거짓된 평화",
+    "description": "당신은 진실을 외면하고 보다 평온한 해석을 선택한다.",
+    "prompt_template": "dark fantasy ambiguous ending scene, silence, dreamlike atmosphere, state: {state}",
+    "state_texts": [],
+    "choices": [
+      {
+        "id": "restart_after_peace",
+        "text": "처음으로 돌아간다",
+        "next_scene": "start",
+        "effects": {
+          "inventory": [],
+          "trust_guide": 0,
+          "ending_path": ""
+        }
+      }
+    ]
+  },
+  "ending_forest": {
+    "title": "숲에 잠식됨",
+    "description": "숲은 천천히 당신을 삼키고, 이야기는 어둠 속으로 가라앉는다.",
+    "prompt_template": "dark fantasy dark ending scene, surreal horror, mist and silence, state: {state}",
+    "state_texts": [],
+    "choices": [
+      {
+        "id": "restart_after_forest",
+        "text": "처음으로 돌아간다",
+        "next_scene": "start",
+        "effects": {
+          "inventory": [],
+          "trust_guide": 0,
+          "ending_path": ""
+        }
+      }
+    ]
+  }
+}

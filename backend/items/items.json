@@ -1,0 +1,26 @@
+{
+  "letter": {
+    "name": "편지",
+    "description": "희미하게 젖은 종이. 누군가의 경고가 적혀 있다.",
+    "image": "/generated_items/letter.png",
+    "tags": ["clue", "paper"],
+    "usable": false,
+    "quest_item": true
+  },
+  "rusty_key": {
+    "name": "녹슨 열쇠",
+    "description": "오래된 철 냄새가 나는 작은 열쇠.",
+    "image": "/generated_items/rusty_key.png",
+    "tags": ["key", "metal"],
+    "usable": true,
+    "quest_item": true
+  },
+  "broken_pendant": {
+    "name": "부서진 펜던트",
+    "description": "금이 간 펜던트. 잊힌 기억과 연결된 듯하다.",
+    "image": "/generated_items/broken_pendant.png",
+    "tags": ["memory", "jewel"],
+    "usable": false,
+    "quest_item": true
+  }
+}

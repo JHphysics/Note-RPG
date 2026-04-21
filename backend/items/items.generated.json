@@ -1,0 +1,38 @@
+{
+  "편지": {
+    "name": "편지",
+    "description": "편지에 대한 단서가 담긴 아이템이다.",
+    "image": null,
+    "sketch_path": null,
+    "tags": [
+      "clue",
+      "paper"
+    ],
+    "usable": false,
+    "quest_item": true
+  },
+  "녹슨_열쇠": {
+    "name": "녹슨 열쇠",
+    "description": "녹슨 열쇠에 대한 단서가 담긴 아이템이다.",
+    "image": null,
+    "sketch_path": null,
+    "tags": [
+      "key",
+      "metal"
+    ],
+    "usable": true,
+    "quest_item": true
+  },
+  "부서진_펜던트": {
+    "name": "부서진 펜던트",
+    "description": "부서진 펜던트에 대한 단서가 담긴 아이템이다.",
+    "image": null,
+    "sketch_path": null,
+    "tags": [
+      "memory",
+      "jewel"
+    ],
+    "usable": false,
+    "quest_item": true
+  }
+}

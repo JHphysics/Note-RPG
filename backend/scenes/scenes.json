@@ -1,0 +1,199 @@
+{
+  "start": {
+    "title": "시작의 방",
+    "description": "낡은 책상과 창문이 있는 작은 방이다. 방 안은 조용하고 공기가 약간 차갑다.",
+    "prompt_template": "A cozy fantasy notebook RPG room with an old wooden desk and window. Quiet, slightly cold air. State: {state}",
+    "state_texts": [
+      {
+        "condition": {
+          "has_letter": true
+        },
+        "text": "책상 위에는 이미 펼쳐본 편지가 놓여 있다."
+      },
+      {
+        "condition": {
+          "fear": 1
+        },
+        "text": "이상하게도 방 안이 조금 더 음산하게 느껴진다."
+      }
+    ],
+    "choices": [
+      {
+        "id": "look_desk",
+        "text": "책상을 조사한다",
+        "next_scene": "desk",
+        "effects": {}
+      },
+      {
+        "id": "open_window",
+        "text": "창문을 연다",
+        "next_scene": "window",
+        "effects": {
+          "fear": 1
+        }
+      },
+      {
+        "id": "go_outside",
+        "text": "문을 열고 밖으로 나간다",
+        "next_scene": "forest_entrance",
+        "effects": {},
+        "condition": {
+          "has_key": true
+        }
+      }
+    ]
+  },
+
+  "desk": {
+    "title": "책상 앞",
+    "description": "책상 서랍은 오래되어 잘 열리지 않지만, 위에는 작은 편지가 하나 놓여 있다.",
+    "prompt_template": "Fantasy desk close-up with an old drawer and a mysterious letter. State: {state}",
+    "state_texts": [
+      {
+        "condition": {
+          "has_letter": true
+        },
+        "text": "편지는 이미 손에 쥐고 있다. 다시 읽어도 수상한 문구뿐이다."
+      }
+    ],
+    "choices": [
+      {
+        "id": "take_letter",
+        "text": "편지를 집는다",
+        "next_scene": "desk",
+        "effects": {
+          "has_letter": true
+        },
+        "condition_not": {
+          "has_letter": true
+        }
+      },
+      {
+        "id": "open_drawer",
+        "text": "서랍을 연다",
+        "next_scene": "desk_drawer",
+        "effects": {}
+      },
+      {
+        "id": "back_start",
+        "text": "방 중앙으로 돌아간다",
+        "next_scene": "start",
+        "effects": {}
+      }
+    ]
+  },
+
+  "desk_drawer": {
+    "title": "열린 서랍",
+    "description": "서랍 안에는 녹슨 열쇠 하나가 들어 있다.",
+    "prompt_template": "Open fantasy drawer with a rusty key inside. State: {state}",
+    "state_texts": [],
+    "choices": [
+      {
+        "id": "take_key",
+        "text": "열쇠를 챙긴다",
+        "next_scene": "desk_drawer",
+        "effects": {
+          "has_key": true
+        },
+        "condition_not": {
+          "has_key": true
+        }
+      },
+      {
+        "id": "back_desk",
+        "text": "책상 앞으로 돌아간다",
+        "next_scene": "desk",
+        "effects": {}
+      }
+    ]
+  },
+
+  "window": {
+    "title": "열린 창문",
+    "description": "창문 밖에는 안개 낀 숲이 보이고, 차가운 바람이 방 안으로 밀려든다.",
+    "prompt_template": "Open fantasy window overlooking a misty forest, cold wind, eerie mood. State: {state}",
+    "state_texts": [
+      {
+        "condition": {
+          "fear": 1
+        },
+        "text": "바람소리 사이로 누군가 속삭이는 것 같은 환청이 들린다."
+      }
+    ],
+    "choices": [
+      {
+        "id": "close_window",
+        "text": "창문을 닫고 돌아선다",
+        "next_scene": "start",
+        "effects": {}
+      },
+      {
+        "id": "climb_out",
+        "text": "창문으로 밖에 나간다",
+        "next_scene": "forest_entrance",
+        "effects": {
+          "outside": true
+        }
+      }
+    ]
+  },
+
+  "forest_entrance": {
+    "title": "숲 입구",
+    "description": "짙은 안개가 깔린 숲의 입구다. 오래된 발자국이 흙길에 희미하게 남아 있다.",
+    "prompt_template": "Dark fantasy forest entrance with dense mist and old footprints on the ground. State: {state}",
+    "state_texts": [
+      {
+        "condition": {
+          "has_letter": true
+        },
+        "text": "편지의 문구가 떠오른다. '숲의 가장 깊은 곳에서 진실을 찾으라.'"
+      }
+    ],
+    "choices": [
+      {
+        "id": "follow_path",
+        "text": "발자국을 따라 숲으로 들어간다",
+        "next_scene": "deep_forest",
+        "effects": {}
+      },
+      {
+        "id": "return_room",
+        "text": "방으로 돌아간다",
+        "next_scene": "start",
+        "effects": {}
+      }
+    ]
+  },
+
+  "deep_forest": {
+    "title": "깊은 숲",
+    "description": "숲 안쪽은 거의 빛이 들지 않는다. 나무 사이로 무언가 움직이는 기척이 느껴진다.",
+    "prompt_template": "Deep dark fantasy forest with little light and something moving between the trees. State: {state}",
+    "state_texts": [
+      {
+        "condition": {
+          "fear": 1
+        },
+        "text": "심장이 빠르게 뛰기 시작한다. 여기 오래 머무는 건 위험해 보인다."
+      }
+    ],
+    "choices": [
+      {
+        "id": "end_observe",
+        "text": "숨을 죽이고 주변을 관찰한다",
+        "next_scene": "deep_forest",
+        "effects": {
+          "wisdom": 1
+        }
+      },
+      {
+        "id": "end_run",
+        "text": "황급히 숲을 빠져나간다",
+        "next_scene": "forest_entrance",
+        "effects": {}
+      }
+    ]
+  }
+}
