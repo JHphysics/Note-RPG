@@ -1,0 +1,13 @@
+.image-debug-box {
+  margin: 0 0 18px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(247, 239, 220, 0.9);
+  border: 1px dashed rgba(132, 103, 63, 0.35);
+  color: #5b4b37;
+  font-size: 14px;
+}
+
+.image-debug-box p {
+  margin: 6px 0;
+}
